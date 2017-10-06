@@ -1,0 +1,42 @@
+
+header {
+  height: 100vh;
+  padding-top: 50px;
+  /*background: linear-gradient(135deg, #ffc867, #f037a6);*/
+  background: linear-gradient(135deg, #ffc867, #19B5FE);
+}
+
+#landing-page-title {
+  font-family: 'Ubuntu', sans-serif;
+  color: white;
+  padding-bottom: 30px;
+}
+
+#landing-page-title h1 {
+  font-size: 90px;
+  line-height: 1.5;
+}
+
+#landing-subtitle {
+  font-family: 'Ubuntu', sans-serif;
+  color: white;
+}
+
+.spacer {
+  height: 100px;
+}
+
+#landing-button {
+  background: #FDE3A7;
+  color: black;
+}
+
+#landing-login {
+  background: #FDE3A7;
+}
+
+.list-group-item {
+  background: #f0f5f9;
+  padding-left: 2.75rem;
+  padding-right: 2.75rem;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Listopia: {{genre}}</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+
+  </head>
+  <body>
+    <nav id="navigation" class="navbar navbar-expand-sm navbar-light">
+      <a class="navbar-brand" href="{{url_for('showLandingPage')}}">Listopia</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('showLandingPage')}}">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        {% if 'username' not in login_session %}
+          <form class="form-inline my-2 my-lg-0">
+            <a href="{{url_for('showLogin')}}"><button class="btn btn-outline-dark my-2 my-sm-0" type="button">Login</button></a>
+          </form>
+        {% else %}
+          <form class="form-inline my-2 my-lg-0">
+            {% if login_session['provider'] == 'google' %}
+              <a href="{{url_for('gdisconnect')}}"><button class="btn btn-outline-dark my-2 my-sm-0" type="button">Logout</button></a>
+            {% else %}
+              <a href="{{url_for('fbdisconnect')}}"><button class="btn btn-outline-dark my-2 my-sm-0" type="button">Logout</button></a>
+            {% endif %}
+          </form>
+        {% endif %}
+      </div>
+    </nav>
+    <section id="main-page" class="container">
+      <div class="row">
+        <div id="bookshelf" class="col-md-12">
+          <div class="row">
+            <div class="col-md-auto">
+              <h3>{{genre}}</h3>
+            </div>
+          </div>
+          <div class="row">
+
+            {% for book_chunk in book_chunks %}
+            <div class="card-deck col-md-auto">
+
+              {% for book in book_chunk %}
+              <div class="card book-info-card" style="width: 12rem;">
+                <a href="{{url_for('showBook', title=book.title.replace(' ', '+').lower(), id=book.id)}}"><img class="card-img img-fluid" src={{book.imageLink}} alt="Card image cap"></a>
+                <div class="card-body">
+                  <h6 class="card-title">{{book.title}}</h6>
+                  <p class="card-subtitle mb-2 text-muted">{{book.author}}</p>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  </body>
+</html>
