@@ -131,7 +131,7 @@ def gconnect():
     if result['issued_to'] != GOOGLE_CLIENT_ID:
         response = make_response(
             json.dumps("Token's client ID does not match app's."), 401)
-        print "Token's client ID does not match app's."
+        #print "Token's client ID does not match app's."
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -187,7 +187,7 @@ def fbconnect():
         return response
 
     access_token = request.data
-    print "access token received %s " % access_token
+    #print "access token received %s " % access_token
 
     app_id = json.loads(open('fb_client_secrets.json', 'r').read())[
         'web']['app_id']
@@ -252,7 +252,7 @@ def fbconnect():
 def gdisconnect():
     access_token = login_session.get('access_token')
     if access_token is None:
-        print 'Access token is None'
+        #print 'Access token is None'
         response = make_response(
                 json.dumps('Current user is not connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
@@ -279,7 +279,7 @@ def gdisconnect():
 
 
     result = h.request(url, 'GET')[0]
-    print result
+    #print result
 
     if result['status'] == '200':
         del login_session['provider']
