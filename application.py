@@ -24,7 +24,7 @@ from helper import getBookInfo, chunkify, getGenreList
 
 
 GOOGLE_CLIENT_ID = json.loads(
-        open('client_secrets.json', 'r').read())['web']['client_id']
+        open('../g_client_secrets.json', 'r').read())['web']['client_id']
 
 engine = create_engine('sqlite:///books.db')
 Base.metadata.bind = engine
@@ -189,7 +189,7 @@ def fbconnect():
     access_token = request.data
     #print "access token received %s " % access_token
 
-    app_id = json.loads(open('fb_client_secrets.json', 'r').read())[
+    app_id = json.loads(open('../fb_client_secrets.json', 'r').read())[
         'web']['app_id']
     app_secret = json.loads(
         open('fb_client_secrets.json', 'r').read())['web']['app_secret']
