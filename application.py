@@ -9,6 +9,9 @@ from oauth2client import client
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 
+import google.oauth2.credentials
+import google_auth_oauthlib.flow
+
 from datetime import datetime
 import httplib2
 import json
@@ -24,7 +27,7 @@ from helper import getBookInfo, chunkify, getGenreList
 
 
 GOOGLE_CLIENT_ID = json.loads(
-        open('../g_client_secrets.json', 'r').read())['web']['client_id']
+        open('../g_client_secrets_2.json', 'r').read())['web']['client_id']
 
 engine = create_engine('sqlite:///books.db')
 Base.metadata.bind = engine
@@ -76,7 +79,7 @@ def showLandingPage():
 @app.route('/login/')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                for x in xrange(32))
+                for x in range(32))
     login_session['state'] = state
     return render_template('login.html', STATE=state)
 
@@ -481,5 +484,5 @@ def genresJSON():
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
-    #app.debug = True
-    app.run()
+    app.debug = True
+    app.run(port=8000)
