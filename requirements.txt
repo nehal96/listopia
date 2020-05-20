@@ -2,7 +2,7 @@ Flask==0.12.2
 Flask-HTTPAuth==3.2.3
 Jinja2==2.9.6
 gunicorn
-httplib2==0.10.3
+httplib2==0.18.0
 oauth2client==4.1.2
 bleach==2.0.0
 certifi==2017.7.27.1
