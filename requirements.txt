@@ -13,7 +13,7 @@ idna==2.5
 itsdangerous==0.24
 MarkupSafe==1.0
 passlib==1.7.1
-pip==9.0.1
+pip==19.2
 psycopg2==2.6.1
 pyasn1==0.3.2
 pyasn1-modules==0.0.11
